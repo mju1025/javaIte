@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org/DTD Config 3.0//EN" 
+	"mybatis-3-config.dtd" >
+<configuration>
+
+
+	<properties resource="./driver.properties"/>
+	
+
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL"/>
+
+	</settings>
+
+
+	<typeAliases>
+		<typeAlias alias="MemberVO" type="member.vo.MemberVO"/>
+		<typeAlias alias="BoardVO" type="board.vo.BoardVO"/>
+		<typeAlias alias="CommentVO" type="comment.vo.CommentVO"/>
+	</typeAliases>
+	
+
+	<environments default="development">
+		<environment id="development">
+
+			<transactionManager type="JDBC">
+			</transactionManager>
+
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}"/>
+				<property name="url" value="${url}"/>
+				<property name="username" value="${username}"/>
+				<property name="password" value="${password}"/>
+			</dataSource>
+		</environment>
+	</environments>
+
+
+	<!-- 사용할 Mapper에 대한 설정이 나와야 한다! -->
+	<mappers>
+		<mapper resource="./sqlmap/Member.xml"/>
+		<mapper resource="./sqlmap/Post.xml"/>
+		<mapper resource="./sqlmap/Comment.xml"/>
+	</mappers>
+
+</configuration>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="comments">
+		
+
+	<select id="commentsByPostId" parameterType="CommentVO" resultType="CommentVO">
+		<![CDATA[
+			SELECT * FROM comments 
+			WHERE post_id = ${post_id}
+			order by comment_id desc
+		]]>
+	</select>
+	
+	<insert id="commentinsert" parameterType="CommentVO"> 
+	<![CDATA[
+		INSERT INTO comments (content, author_id, post_id)
+		VALUES (#{content}, #{author_id}, ${post_id});
+	]]>
+	</insert>
+	
+	<update id="commentupdate" parameterType="CommentVO">
+	<![CDATA[
+		UPDATE comments
+		SET content = #{content}
+		WHERE comment_id = ${comment_id}
+	]]>
+	</update>
+	
+	<delete id="commentdelete" parameterType="CommentVO">
+	<![CDATA[
+		DELETE
+		FROM comments
+		WHERE comment_id = ${comment_id}
+	]]>
+	</delete>
+	
+
+</mapper>

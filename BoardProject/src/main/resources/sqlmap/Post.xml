@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="posts">
+		
+
+	
+	<select id="getAllPosts" resultType="BoardVO">
+		<![CDATA[
+			SELECT *
+			FROM posts
+			order by post_id desc
+		]]>
+	</select>
+	
+	
+	<select id="getDetailPost" parameterType="BoardVO" resultType="BoardVO">
+		<![CDATA[
+			SELECT *
+			FROM posts
+			WHERE post_id = ${post_id}
+		]]>
+	</select>
+	
+	<insert id="insertPost" parameterType="BoardVO"> 
+		<![CDATA[
+			INSERT INTO posts (title, content, author_id)
+			VALUES (#{title}, #{content}, #{author_id});
+		]]>
+	</insert>
+	
+	<insert id="updatePost" parameterType="BoardVO"> 
+		<![CDATA[
+			UPDATE posts
+			SET title = #{title}, content = #{content}
+			WHERE post_id = ${post_id}
+		]]>
+	</insert>
+	
+	<select id="searchPost" parameterType="String" resultType="BoardVO">
+		<![CDATA[
+			SELECT *
+			FROM posts
+			WHERE title like CONCAT('%', #{searchtitle}, '%')
+		]]>
+	</select>
+
+</mapper>

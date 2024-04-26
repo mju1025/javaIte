@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="members">
+		
+	<insert id="insertMember" parameterType="MemberVO"> 
+		<![CDATA[
+			INSERT INTO members (member_id, password, name)
+			VALUES (#{member_id}, #{password}, #{name});
+		]]>
+	</insert>
+	
+	
+	<select id="findMember" parameterType="MemberVO" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM MEMBERS where member_id = #{member_id} AND password = #{password};
+		]]>
+	</select>
+	
+	
+	<update id="updateMember" parameterType="MemberVO"> 
+		<![CDATA[
+			UPDATE members
+			SET password = #{password}
+			WHERE member_id = #{member_id}
+		]]>
+	</update>	
+	
+	
+	<delete id="deleteMember" parameterType="MemberVO"> 
+		<![CDATA[
+			DELETE
+			FROM members
+			WHERE member_id = #{member_id}
+		]]>
+	</delete>
+
+</mapper>
+
+
